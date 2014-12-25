@@ -36,13 +36,16 @@ int Matrix::getcols() const {
 }
 
 int Matrix::getelem(int r, int c) const {
-
+  assert (r <= row);
+  assert (c <= col);
   return elem[r*col + c];
 }
 
 void Matrix::setelem(int r, int c, int number)
 {
-    elem[r * col + c] = number;
+  assert (r <= row);
+  assert (c <= col);
+  elem[r * col + c] = number;
 }
 
 
@@ -68,8 +71,8 @@ void Matrix::subtract(Matrix &aa) {
 
 
 bool Matrix::equals(const Matrix &aa)  {
-  assert(aa.getrows() == row);
-  assert(aa.getcols() == col);
+  if (aa.getcols() != col || aa.getrows() != row) return false;
+  
   for (int rr = 0; rr < row; ++rr)
     for (int cc = 0; cc < col; ++cc) {
       
@@ -84,23 +87,13 @@ bool Matrix::equals(const Matrix &aa)  {
 Matrix& Matrix::operator= (const Matrix &aa) {
 
   std::cout<<"call operator ="<<std::endl;
-  if(this != &aa) {
-    if (row !=0 || col != 0) 
-      delete[] elem;
+  cleanup();
+  copy(aa);
+  row = aa.getrows();
+  std:: cout<< "aa rows = "<<aa.getrows()<<std::endl;
+  col = aa.getcols();
+  std::cout<< "aa cols = "<<aa.getcols()<<std::endl;
     
-    row = aa.getrows();
-    std:: cout<< "aa rows = "<<aa.getrows()<<std::endl;
-    col = aa.getcols();
-    std::cout<< "aa cols = "<<aa.getcols()<<std::endl;
-    
-    elem = new int[row * col];
-    for (int rr = 0; rr < row; ++rr)
-      for (int cc = 0; cc < col; ++cc) {
-        int tmp = aa.getelem(rr, cc);
-        setelem(rr, cc, tmp);
-        // elem[rr*col + cc] = tmp;
-    }
-  }
   return *this;
 }
 
@@ -111,7 +104,7 @@ void Matrix::cleanup() {
 
 void Matrix::copy(const Matrix & aa) {
   row = aa.getrows();
-  col = aa.getrows();
+  col = aa.getcols();
   int elenumber = row * col;
 
   elem = new int[elenumber];
