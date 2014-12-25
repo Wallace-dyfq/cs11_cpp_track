@@ -5,11 +5,12 @@ class Point {
 private:
   double x_coord;
   double y_coord;
+  double z_coord;
 
 public:
   // Constructors
   Point();                      // default constructor
-  Point(double x, double y);    // two-argument constructor
+  Point(double x, double y, double z);    // two-argument constructor
 
   // Destructor
   ~Point();
@@ -17,8 +18,10 @@ public:
   // Mutator methods
   void setX(double val);
   void setY(double val);
+  void setZ(double val);
 
   // Accessor methods
   double getX();
   double getY();
+  double getZ();
 };

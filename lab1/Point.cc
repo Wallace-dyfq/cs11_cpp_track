@@ -5,12 +5,14 @@
 Point::Point() {
   x_coord = 0;
   y_coord = 0;
+  z_coord = 0;
 }
 
 // Initializes the point to (x, y).
-Point::Point(double x, double y) {
+Point::Point(double x, double y, double z) {
   x_coord = x;
   y_coord = y;
+  z_coord = z;
 }
 
 // Destructor - Point allocates no dynamic resources.
@@ -28,6 +30,10 @@ void Point::setY(double val) {
   y_coord = val;
 }
 
+void Point::setZ(double val) {
+  z_coord = val;
+
+}
 // Accessors:
 
 double Point::getX() {
@@ -36,4 +42,8 @@ double Point::getX() {
 
 double Point::getY() {
   return y_coord;
+}
+
+double Point::getZ() {
+  return z_coord;
 }
