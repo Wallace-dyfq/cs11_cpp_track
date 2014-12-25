@@ -86,13 +86,15 @@ bool Matrix::equals(const Matrix &aa)  {
 
 Matrix& Matrix::operator= (const Matrix &aa) {
 
-  std::cout<<"call operator ="<<std::endl;
-  cleanup();
-  copy(aa);
-  row = aa.getrows();
-  std:: cout<< "aa rows = "<<aa.getrows()<<std::endl;
-  col = aa.getcols();
-  std::cout<< "aa cols = "<<aa.getcols()<<std::endl;
+  //std::cout<<"call operator ="<<std::endl;
+  if (this != &aa) {
+    cleanup();
+    copy(aa);
+  }
+  //row = aa.getrows();
+  //std:: cout<< "aa rows = "<<aa.getrows()<<std::endl;
+  //col = aa.getcols();
+  //std::cout<< "aa cols = "<<aa.getcols()<<std::endl;
     
   return *this;
 }

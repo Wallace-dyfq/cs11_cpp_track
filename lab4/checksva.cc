@@ -240,22 +240,27 @@ void getsetelem(ErrorContext &ec, int runs)
       for (int i = 0; i < 10; i++)
       {
         int idx = i * 4 + i % 3;
-
+        //  cerr<<endl<<" in position 243"<<endl;
         sv.setElem(idx, 100 - 3 * i);
+        //cerr <<" success or not for setElem 245"<<endl;
         indexes.insert(idx);
       }
 
+      //  cerr <<" arrive at line 249" <<endl;
       // Get values next.
       pass = true;
       for (int i = 0; i < 10; i++)
         pass = pass && (sv.getElem(i * 4 + i % 3) == 100 - 3 * i);
-
+      //  cerr << "arrive at 254"<<endl;
       // Finally, make sure all other values are reported as zero.
       // NOTE:  Don't trust sv.getSize() here.  :)
+      
       for (int i = 0; i < 40; i++)
       {
+        
         if (indexes.find(i) == indexes.end())
           pass = pass && (sv.getElem(i) == 0);
+          // cerr<< "on line 263 for getter of  "<<i<<endl;
       }
 
       ec.result(pass);
@@ -278,6 +283,7 @@ void getsetelem(ErrorContext &ec, int runs)
         int idx = 40 - i * 4 - i % 3 - 1;
 
         sv.setElem(idx, 50 - 3 * i);
+        // cerr<<" pass setter for index "<< idx <<endl;
         indexes.insert(idx);
       }
 
@@ -381,12 +387,15 @@ void getsetzeros(ErrorContext &ec, int runs)
 
       // Dump some values into the list.  Order doesn't matter here.
       sv.setElem(0, 10);
+      // cerr<< " line 390 pass setElem(0, 10) "<<endl;
       for (int i = 1; i < 10; i++)
       {
         indexes.insert(4 * i);
         sv.setElem(4 * i, 10 + i);
+        // cerr<< " line 395 pass setElem(4* " <<i<<","<< 10+i<<") "<<endl;
       }
 
+      //  cerr<< " \nline 398 "<<endl;
       // Now set the first nonzero node to be 0.
       sv.setElem(0, 0);
       
@@ -546,6 +555,7 @@ void copies(ErrorContext &ec, int runs)
       ec.DESC("check copy correctness");
 
       SparseVector copySV = origSV;
+      //    cerr<< "\narrive at line 558"<<endl;
 
       pass = true;
 

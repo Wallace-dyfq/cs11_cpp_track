@@ -54,14 +54,11 @@ void Matrix::setelem(int r, int c, int number)
 
 Matrix& Matrix::operator= (const Matrix &aa) {
 
-  std::cout<<"call operator ="<<std::endl;
-  cleanup();
-  copy(aa);
-  row = aa.getrows();
-  std:: cout<< "aa rows = "<<aa.getrows()<<std::endl;
-  col = aa.getcols();
-  std::cout<< "aa cols = "<<aa.getcols()<<std::endl;
-    
+  // std::cout<<"call operator ="<<std::endl;
+  if (this != &aa) {
+    cleanup();
+    copy(aa);
+  }
   return *this;
 }
 
@@ -71,7 +68,8 @@ void Matrix::cleanup() {
 }
 
 void Matrix::copy(const Matrix & aa) {
-  row = aa.getrows();
+  //row = aa.getrows();
+  row = aa.row;
   col = aa.getcols();
   int elenumber = row * col;
 
