@@ -1,0 +1,216 @@
+Testing the SparseVector!!
+
+NOTE:  If you see any memory errors, you MUST fix them!
+       Tests intentionally invoke destructors after they complete,
+       so if you see a seg-fault after a passed test, it is
+       probably a bug in your destructor.
+
+line: description                                                       result
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 167: --- Smoke-Tests:  These are really basic! ---                     
+ 169: one-arg constructor, size, destructor                             ok
+ 183: one-arg constructor, very large size                              ok
+ 197: copy an empty sparse-vector                                       ok
+
+ 224: --- getelem/setelem access patterns ---                           
+ 232: append pattern                                                    ok
+ 268: prepend pattern                                                   ok
+ 304: insert pattern                                                    ok
+ 232: append pattern                                                    ok
+ 268: prepend pattern                                                   ok
+ 304: insert pattern                                                    ok
+ 232: append pattern                                                    ok
+ 268: prepend pattern                                                   ok
+ 304: insert pattern                                                    ok
+
+ 367: --- getelem/setelem with zeros ---                                
+ 376: set zero element at front                                         ok
+ 417: set zero element at back                                          ok
+ 458: set zero element in the middle                                    ok
+ 376: set zero element at front                                         ok
+ 417: set zero element at back                                          ok
+ 458: set zero element in the middle                                    ok
+ 376: set zero element at front                                         ok
+ 417: set zero element at back                                          ok
+ 458: set zero element in the middle                                    ok
+
+ 515: --- Copy-Constructor Correctness ---                              
+ 530: copy an empty sparse-vector                                       ok
+ 546: check copy correctness                                            ok
+ 568: make sure it's a deep copy...                                     ok
+ 530: copy an empty sparse-vector                                       ok
+ 546: check copy correctness                                            ok
+ 568: make sure it's a deep copy...                                     ok
+ 530: copy an empty sparse-vector                                       ok
+ 546: check copy correctness                                            ok
+ 568: make sure it's a deep copy...                                     ok
+
+ 709: --- Assignment Correctness ---                                    
+ 724: check assigned-copy correctness                                   ok
+ 758: make sure it's a deep copy...                                     ok
+ 787: check self-assignment                                             ok
+ 724: check assigned-copy correctness                                   ok
+ 758: make sure it's a deep copy...                                     ok
+ 787: check self-assignment                                             ok
+ 724: check assigned-copy correctness                                   ok
+ 758: make sure it's a deep copy...                                     ok
+ 787: check self-assignment                                             ok
+
+ 614: --- Equality/Inequality Operations ---                            
+ 628: equality against self                                             ok
+ 633: inequality against self                                           ok
+ 638: equality/inequality against identical copy                        ok
+ 646: equality/inequality against modified copy                         
+===== diffSV =======
+index: :0, 	value: 1
+index: :2, 	value: 6
+index: :3, 	value: 15
+index: :5, 	value: -15
+
+===== sv =======
+index: :0, 	value: 1
+index: :2, 	value: 6
+index: :3, 	value: 15
+index: :5, 	value: -15
+index: :8, 	value: -4
+
+===== csvRef =======
+index: :0, 	value: 1
+index: :2, 	value: 6
+index: :3, 	value: 15
+index: :5, 	value: -15
+index: :8, 	value: -4
+ ec.result((diffSV != sv) && !(csvRef == diffSV));
+ERROR
+ 665: equality/inequality against similar SparseVector                  ok
+ 684: equality/inequality against different-size empty SparseVector     ok
+
+ 825: --- Compound Assignment Operators ---                             
+ 831: simple in-place addition, no new/deleted nodes                    ok
+ 850: a += b didn't change b                                            ok
+ 856: simple in-place addition, extra values in a                       ok
+ 880: a += b didn't change b                                            ok
+ 886: simple in-place addition, extra values in b                       ok
+ 907: a += b didn't change b                                            ok
+ 914: simple in-place addition, a is empty                              ok
+ 932: a += b didn't change b                                            ok
+ 939: simple in-place addition, generate zeros at start                 ok
+ 959: a += b didn't change b                                            ok
+ 965: simple in-place addition, generate zeros at end                   ok
+ 985: a += b didn't change b                                            ok
+ 991: simple in-place addition, generate zeros in middle                ok
+1011: a += b didn't change b                                            ok
+1019: simple in-place subtraction, no new/deleted nodes                 ok
+1038: a -= b didn't change b                                            ok
+1044: simple in-place subtraction, extra values in a                    ok
+1068: a -= b didn't change b                                            ok
+1074: simple in-place subtraction, extra values in b                    ok
+1095: a -= b didn't change b                                            ok
+1102: simple in-place subtraction, a is empty                           ok
+1120: a -= b didn't change b                                            ok
+1127: simple in-place subtraction, generate zeros at start              ok
+1147: a -= b didn't change b                                            ok
+1153: simple in-place subtraction, generate zeros at end                ok
+1173: a -= b didn't change b                                            ok
+1179: simple in-place subtraction, generate zeros in middle             ok
+1199: a -= b didn't change b                                            ok
+ 831: simple in-place addition, no new/deleted nodes                    ok
+ 850: a += b didn't change b                                            ok
+ 856: simple in-place addition, extra values in a                       ok
+ 880: a += b didn't change b                                            ok
+ 886: simple in-place addition, extra values in b                       ok
+ 907: a += b didn't change b                                            ok
+ 914: simple in-place addition, a is empty                              ok
+ 932: a += b didn't change b                                            ok
+ 939: simple in-place addition, generate zeros at start                 ok
+ 959: a += b didn't change b                                            ok
+ 965: simple in-place addition, generate zeros at end                   ok
+ 985: a += b didn't change b                                            ok
+ 991: simple in-place addition, generate zeros in middle                ok
+1011: a += b didn't change b                                            ok
+1019: simple in-place subtraction, no new/deleted nodes                 ok
+1038: a -= b didn't change b                                            ok
+1044: simple in-place subtraction, extra values in a                    ok
+1068: a -= b didn't change b                                            ok
+1074: simple in-place subtraction, extra values in b                    ok
+1095: a -= b didn't change b                                            ok
+1102: simple in-place subtraction, a is empty                           ok
+1120: a -= b didn't change b                                            ok
+1127: simple in-place subtraction, generate zeros at start              ok
+1147: a -= b didn't change b                                            ok
+1153: simple in-place subtraction, generate zeros at end                ok
+1173: a -= b didn't change b                                            ok
+1179: simple in-place subtraction, generate zeros in middle             ok
+1199: a -= b didn't change b                                            ok
+ 831: simple in-place addition, no new/deleted nodes                    ok
+ 850: a += b didn't change b                                            ok
+ 856: simple in-place addition, extra values in a                       ok
+ 880: a += b didn't change b                                            ok
+ 886: simple in-place addition, extra values in b                       ok
+ 907: a += b didn't change b                                            ok
+ 914: simple in-place addition, a is empty                              ok
+ 932: a += b didn't change b                                            ok
+ 939: simple in-place addition, generate zeros at start                 ok
+ 959: a += b didn't change b                                            ok
+ 965: simple in-place addition, generate zeros at end                   ok
+ 985: a += b didn't change b                                            ok
+ 991: simple in-place addition, generate zeros in middle                ok
+1011: a += b didn't change b                                            ok
+1019: simple in-place subtraction, no new/deleted nodes                 ok
+1038: a -= b didn't change b                                            ok
+1044: simple in-place subtraction, extra values in a                    ok
+1068: a -= b didn't change b                                            ok
+1074: simple in-place subtraction, extra values in b                    ok
+1095: a -= b didn't change b                                            ok
+1102: simple in-place subtraction, a is empty                           ok
+1120: a -= b didn't change b                                            ok
+1127: simple in-place subtraction, generate zeros at start              ok
+1147: a -= b didn't change b                                            ok
+1153: simple in-place subtraction, generate zeros at end                ok
+1173: a -= b didn't change b                                            ok
+1179: simple in-place subtraction, generate zeros in middle             ok
+1199: a -= b didn't change b                                            ok
+
+1216: --- Simple Arithmetic Operators ---                               
+1222: simple addition using +, no new/deleted nodes                     ok
+1248: simple addition using +, extra values in a                        ok
+1275: simple addition using +, extra values in b                        ok
+1297: simple addition using +, generate zeros at start                  ok
+1318: simple addition using +, generate zeros at end                    ok
+1339: simple addition using +, generate zeros in middle                 ok
+1362: simple subtraction using -, no new/deleted nodes                  ok
+1382: simple subtraction using -, extra values in a                     ok
+1408: simple subtraction using -, extra values in b                     ok
+1430: simple subtraction using -, generate zeros at start               ok
+1451: simple subtraction using -, generate zeros at end                 ok
+1472: simple subtraction using -, generate zeros in middle              ok
+1222: simple addition using +, no new/deleted nodes                     ok
+1248: simple addition using +, extra values in a                        ok
+1275: simple addition using +, extra values in b                        ok
+1297: simple addition using +, generate zeros at start                  ok
+1318: simple addition using +, generate zeros at end                    ok
+1339: simple addition using +, generate zeros in middle                 ok
+1362: simple subtraction using -, no new/deleted nodes                  ok
+1382: simple subtraction using -, extra values in a                     ok
+1408: simple subtraction using -, extra values in b                     ok
+1430: simple subtraction using -, generate zeros at start               ok
+1451: simple subtraction using -, generate zeros at end                 ok
+1472: simple subtraction using -, generate zeros in middle              ok
+1222: simple addition using +, no new/deleted nodes                     ok
+1248: simple addition using +, extra values in a                        ok
+1275: simple addition using +, extra values in b                        ok
+1297: simple addition using +, generate zeros at start                  ok
+1318: simple addition using +, generate zeros at end                    ok
+1339: simple addition using +, generate zeros in middle                 ok
+1362: simple subtraction using -, no new/deleted nodes                  ok
+1382: simple subtraction using -, extra values in a                     ok
+1408: simple subtraction using -, extra values in b                     ok
+1430: simple subtraction using -, generate zeros at start               ok
+1451: simple subtraction using -, generate zeros at end                 ok
+1472: simple subtraction using -, generate zeros in middle              ok
+
+Passed 164/165 tests.
+
+For more information, please consult:
+  checkspvect.cc, line 646
+
