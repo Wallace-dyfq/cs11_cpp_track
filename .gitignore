@@ -2,6 +2,7 @@
 *.slo
 *.lo
 *.o
+lab6/alge
 
 # compilred dynamic libraries
 *.so

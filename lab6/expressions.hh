@@ -1,7 +1,12 @@
 // this file contain all the classes needed, instead of spreading them in different files
+
+#ifndef _EXPRESSIONS_HH_
+#define _EXPRESSIONS_HH_
+
 #include<string>
 #include<stdexcept>
 #include<cassert>
+#include "environment.hh"
 
 class Expression {
   //private:
@@ -67,6 +72,9 @@ class Symbol : public Expression {
   double evaluate(const Environment &env) const {
 
     return env.getSymbolValue(name);
+  }
+  string getname() const {
+    return name;
   }
 };
 
@@ -165,3 +173,6 @@ class NegOper : public UnaryOperator {
     return -getExp_p()->evaluate(env);
   }  
 };
+
+
+#endif  // _EXPRESSIONS_HH_
