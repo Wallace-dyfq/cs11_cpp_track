@@ -1,6 +1,7 @@
 #include <iostream>
 #include <map>
 #include <string>
+#include<ctype.h>
 
 
 // So we don't have to type "std::" everywhere...
@@ -42,6 +43,38 @@ string processWord(string word)
   /*****************************************/
   /* TODO:  Your implementation goes here! */
   /*****************************************/
+  string tmp;
+  int i = 0;
+  int j = word.size();
+  int cx = 0;
+  while(word[i])
+  {
+    if (!ispunct(word[i]))
+      break;      
+    i++;
+  }
+  j--;     // now j is the index for the last char in the string
+  if (i < j) // the word is not all punctuation
+  {
+   
+    while(word[j])
+    {
+    
+      if (!ispunct(word[j]))
+        break;
+      j--;  
+    }
+  }
+  int len = j -i+1;
+  tmp = word.substr(i, len);
+  
+  while (tmp[cx])
+  {
+    if (!islower(tmp[cx]))
+      tmp[cx] = tolower(tmp[cx]);
+    cx++;
+  }
+  return tmp;  
 }
 
 
@@ -50,6 +83,19 @@ void processText(map<string, int>& wordCounts)
   /*****************************************/
   /* TODO:  Your implementation goes here! */
   /*****************************************/
+  string word;
+  int totalWord = 0;
+  while (cin >> word)
+  {
+    string tmp = processWord(word);
+    if (tmp.size() != 0)
+    {
+      totalWord++;
+      wordCounts[tmp]++;
+    }
+  }
+  cout<< "Total words in document: "<<totalWord<<"\nUnique words: "<<wordCounts.size()<<endl;
+  
 }
 
 
